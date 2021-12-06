@@ -11,15 +11,18 @@ import {Subject, takeUntil} from "rxjs";
 })
 export class LogoutComponent implements OnInit, OnDestroy {
   private _isDead$ = new Subject();
+  public loading: boolean = false;
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
   logout():void {
+    this.loading = true;
     this.userService.logout().pipe(takeUntil(this._isDead$)).subscribe(
       response => {
         if (response) {
           this.router.navigate([''])
+          this.loading = false;
         }
       }
     )
