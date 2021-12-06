@@ -3,32 +3,26 @@
     <h1>Login</h1>
     <div class="alert alert-danger" *ngIf="errorMsg">{{errorMsg}}</div>
     <form [formGroup]="loginForm" (ngSubmit)="login()">
+
       <div class="form-group">
-        <label for="emailId">Email</label>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text" >@</span>
-          </div>
-          <input type="text" class="form-control"
-                 id="emailId"
-                 formControlName="email"
-                 [ngClass]="{'is-invalid': !loginForm.get('email')?.valid , 'is-valid': loginForm.get('email')?.valid}"
-          >
-        </div>
+        <app-form-field >
+          <input
+            app-form-field-input
+            formControlName="email"
+            id="emailId"
+            title="Email"
+            type="email">
+        </app-form-field>
       </div>
       <div class="form-group">
-        <label for="passwordId">Password</label>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fa fa-lock"></i></span>
-          </div>
-          <input type="password"
-                 class="form-control"
-                 id="passwordId"
-                 formControlName="password"
-                 [ngClass]="{'is-invalid': !loginForm.get('password')?.valid , 'is-valid': loginForm.get('password')?.valid}"
-          >
-        </div>
+        <app-form-field>
+          <input
+            app-form-field-input
+            formControlName="password"
+            id="passwordId"
+            title="Password"
+            type="password">
+        </app-form-field>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>

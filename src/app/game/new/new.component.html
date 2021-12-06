@@ -2,31 +2,24 @@
 <form [formGroup]="gameForm">
   <div class="row">
     <div class="form-group col-6">
-      <label for="rowsId">Rows</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" ><i class="fa fa-sort-numeric-asc"></i></span>
-        </div>
-        <input type="number" class="form-control"
-               id="rowsId"
-               formControlName="rows"
-               [ngClass]="{'is-invalid': !gameForm.get('rows')?.valid , 'is-valid': gameForm.get('rows')?.valid}"
-        >
-      </div>
+      <app-form-field>
+        <input
+          app-form-field-input
+          formControlName="rows"
+          id="rowsId"
+          title="Rows"
+          type="number">
+      </app-form-field>
     </div>
     <div class="form-group col-6">
-      <label for="colsId">Cols</label>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text"><i class="fa fa-sort-numeric-asc"></i></span>
-        </div>
-        <input type="number"
-               class="form-control"
-               id="colsId"
-               formControlName="cols"
-               [ngClass]="{'is-invalid': !gameForm.get('cols')?.valid , 'is-valid': gameForm.get('cols')?.valid}"
-        >
-      </div>
+      <app-form-field type="number" title="Cols">
+        <input
+          app-form-field-input
+          formControlName="cols"
+          id="colsId"
+          title="Cols"
+          type="number">
+      </app-form-field>
     </div>
   </div>
 </form>

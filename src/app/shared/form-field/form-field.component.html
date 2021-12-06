@@ -1,1 +1,18 @@
-<p>form-field works!</p>
+<label [for]="id">{{title}}</label>
+<div class="input-group">
+  <div class="input-group-prepend">
+      <span class="input-group-text">
+        <span class="fa fa-{{ icon }}"></span>
+      </span>
+  </div>
+  <ng-content>
+  </ng-content>
+  <div class="invalid-feedback" >
+    <ul *ngFor="let error of messageError">
+      <li>
+        {{error}}
+      </li>
+    </ul>
+  </div>
+</div>
+

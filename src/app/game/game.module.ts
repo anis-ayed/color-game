@@ -4,6 +4,7 @@ import { NewComponent } from './new/new.component';
 import { CaseComponent } from './case/case.component';
 import {GameRoutingModule} from "./game-routing.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "../shared/shared.module";
 
 
 
@@ -12,10 +13,11 @@ import {ReactiveFormsModule} from "@angular/forms";
     NewComponent,
     CaseComponent
   ],
-    imports: [
-        CommonModule,
-        GameRoutingModule,
-        ReactiveFormsModule
-    ]
+  imports: [
+    CommonModule,
+    GameRoutingModule,
+    ReactiveFormsModule,
+    SharedModule
+  ]
 })
 export class GameModule { }
