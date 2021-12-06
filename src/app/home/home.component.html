@@ -1,1 +1,9 @@
-<p>home works!</p>
+<div class="container">
+  <h1>Home</h1>
+  <div appIfNoUserDirective>
+    <a class="btn btn-primary" [routerLink]="'/user/login'">Login</a>
+  </div>
+  <div appIfUserDirective>
+    <a class="btn btn-primary" [routerLink]="'/game/new'">New Game</a>
+  </div>
+</div>

@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.loginForm.value).pipe(takeUntil(this._isDead$)).subscribe(
       (user: any) => {
         if(!!user) {
+          console.log(user);
           this.router.navigate([''])
         }
       }, error => {
