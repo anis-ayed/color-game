@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loading: boolean = false;
   public loginForm: FormGroup;
   public errorMsg: string = '';
   private _isDead$ = new Subject();
@@ -23,11 +24,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   login(): void {
-    this.userService.login(this.loginForm.value).pipe(takeUntil(this._isDead$)).subscribe(
+    this.loading = true;
+    this.userService.loginHttp(this.loginForm.value).pipe(takeUntil(this._isDead$)).subscribe(
       (user: any) => {
-        if(!!user) {
-          console.log(user);
+        if(!!user && user.length > 0) {
+          this.userService.changeUser(user[0])
+          this.loading = false;
           this.router.navigate([''])
+        } else {
+          this.loading = false;
+          this.errorMsg = 'unknown user!'
         }
       }, error => {
         this.errorMsg = error.message

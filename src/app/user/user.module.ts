@@ -5,6 +5,7 @@ import { LogoutComponent } from './logout/logout.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {UserRoutingModule} from "./user-routing.module";
 import {SharedModule} from "../shared/shared.module";
+import {HttpClientModule} from "@angular/common/http";
 
 
 
@@ -17,7 +18,7 @@ import {SharedModule} from "../shared/shared.module";
     CommonModule,
     UserRoutingModule,
     ReactiveFormsModule,
-    SharedModule,
+    SharedModule
   ]
 })
 export class UserModule { }
