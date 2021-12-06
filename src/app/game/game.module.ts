@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NewComponent } from './new/new.component';
 import { CaseComponent } from './case/case.component';
 import {GameRoutingModule} from "./game-routing.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -11,9 +12,10 @@ import {GameRoutingModule} from "./game-routing.module";
     NewComponent,
     CaseComponent
   ],
-  imports: [
-    CommonModule,
-    GameRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        GameRoutingModule,
+        ReactiveFormsModule
+    ]
 })
 export class GameModule { }

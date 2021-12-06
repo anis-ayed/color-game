@@ -13,9 +13,6 @@ export class AppComponent {
   constructor(private userService: UserService) {
   }
   ngOnInit(): void {
-    this.userService.user$.subscribe(user => {
-      console.log(user);
-      (!!user) ? this.user = user : this.user = null
-    })
+    this.userService.user$.subscribe(user => (!!user) ? this.user = user : this.user = null)
   }
 }

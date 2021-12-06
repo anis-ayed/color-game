@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-new',
@@ -7,9 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewComponent implements OnInit {
 
-  constructor() { }
+  gameForm: FormGroup;
+  table: any;
+  constructor() {
+    this.gameForm = new FormGroup({
+      rows: new FormControl(3, [Validators.min(1)]),
+      cols: new FormControl(6, [Validators.min(1)])
+    })
 
-  ngOnInit(): void {
   }
 
+  ngOnInit(): void {
+    this.drawGrid(this.gameForm.get('rows')?.value, this.gameForm.get('cols')?.value);
+  }
+
+  drawGrid(row: number, col: number):void {
+    const table = [];
+    for(let i =0; i < row; i++) {
+      const cols = [...new Array(col)].map(() => 'blanc');
+      table.push(cols);
+    }
+    this.table = table;
+  }
+
+  changeColor(row: number, col: number):void {
+    this.table[row][col] = prompt('insert color');
+  }
 }
