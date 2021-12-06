@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {concatAll, map, mergeAll, of, startWith} from "rxjs";
+import {skip, tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-new',
@@ -10,6 +12,8 @@ export class NewComponent implements OnInit {
 
   gameForm: FormGroup;
   table: any;
+  row: number = 3;
+  col: number = 6;
   constructor() {
     this.gameForm = new FormGroup({
       rows: new FormControl(3, [Validators.min(1)]),
@@ -19,7 +23,17 @@ export class NewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.drawGrid(this.gameForm.get('rows')?.value, this.gameForm.get('cols')?.value);
+    this.drawGrid(this.row, this.col);
+    const rowsControl = this.gameForm.get('rows');
+    rowsControl?.valueChanges.pipe(startWith(3)).subscribe(val => {
+      this.row = val
+      this.changeRows(this.row, this.col);
+    })
+    const colsControl = this.gameForm.get('cols');
+    colsControl?.valueChanges.pipe(startWith(6)).subscribe(val => {
+      this.col = val
+      this.changeCols(this.col)
+    })
   }
 
   drawGrid(row: number, col: number):void {
@@ -29,6 +43,22 @@ export class NewComponent implements OnInit {
       table.push(cols);
     }
     this.table = table;
+  }
+
+  changeCols (col: number){
+    if(col > this.table[0].length) {
+      this.table.map((item: any[]) => item.push(...new Array(col - item.length)))
+    } else if (col < this.table[0].length) {
+      this.table.map((item: any[]) => item.splice(col - item.length))
+    }
+  }
+
+  changeRows(row: number, col: number){
+    if(row > this.table.length) {
+      this.table.push(new Array(col))
+    } else if (row < this.table.length){
+      this.table.splice( row - this.table.length )
+    }
   }
 
   changeColor(row: number, col: number):void {

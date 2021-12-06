@@ -11,7 +11,6 @@
                id="rowsId"
                formControlName="rows"
                [ngClass]="{'is-invalid': !gameForm.get('rows')?.valid , 'is-valid': gameForm.get('rows')?.valid}"
-               (change)="drawGrid(gameForm.get('rows')?.value, gameForm.get('cols')?.value)"
         >
       </div>
     </div>
@@ -26,7 +25,6 @@
                id="colsId"
                formControlName="cols"
                [ngClass]="{'is-invalid': !gameForm.get('cols')?.valid , 'is-valid': gameForm.get('cols')?.valid}"
-               (change)="drawGrid(gameForm.get('rows')?.value, gameForm.get('cols')?.value)"
         >
       </div>
     </div>
